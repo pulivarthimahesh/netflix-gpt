@@ -1,5 +1,10 @@
 import React, { useRef } from "react";
 import { useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 import { checkSignInFormValidation } from "../utils/validations";
 import Header from "./Header";
 
@@ -15,6 +20,39 @@ const Login = () => {
       password.current.value
     );
     setErrorMessage(message);
+    if (message) return;
+    if (!isSignInForm) {
+      // Sign up
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    }
   };
 
   return (
@@ -56,6 +94,7 @@ const Login = () => {
           <h3 className="text-red-500 font-bold">{errorMessage}</h3>
         )}
         <button
+          type="submit"
           className="p-4 my-4 w-full bg-red-700 rounded-xs"
           onClick={handleButtonClick}
         >
