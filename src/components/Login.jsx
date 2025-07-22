@@ -3,16 +3,23 @@ import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { checkSignInFormValidation } from "../utils/validations";
 import Header from "./Header";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const email = useRef(null);
   const password = useRef(null);
+  const displayName = useRef(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
     const message = checkSignInFormValidation(
@@ -30,7 +37,26 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          //   console.log(user);
+          updateProfile(user, {
+            displayName: displayName.current.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid,
+                  email,
+                  displayName,
+                  photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              setErrorMessage(error.errorMessage);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -46,6 +72,14 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
+          dispatch(
+            addUser({
+              uid: user.uid,
+              name: user.displayName,
+              email: user.email,
+            })
+          );
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -73,6 +107,7 @@ const Login = () => {
         </h1>
         {!isSignInForm && (
           <input
+            ref={displayName}
             type="text"
             placeholder="Full Name"
             className="p-2 my-2 w-full bg-gray-400 rounded-xs"
