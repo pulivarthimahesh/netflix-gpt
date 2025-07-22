@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
+import { checkSignInFormValidation } from "../utils/validations";
 import Header from "./Header";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+  const email = useRef(null);
+  const password = useRef(null);
+
+  const handleButtonClick = () => {
+    const message = checkSignInFormValidation(
+      email.current.value,
+      password.current.value
+    );
+    setErrorMessage(message);
+  };
 
   return (
     <div>
@@ -14,7 +26,10 @@ const Login = () => {
           alt="background"
         />
       </div>
-      <form className="absolute w-3/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white opacity-80 rounded-xs">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="absolute w-3/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white opacity-80 rounded-xs"
+      >
         <h1 className="font-bold text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
@@ -26,17 +41,25 @@ const Login = () => {
           />
         )}
         <input
+          ref={email}
           type="text"
           placeholder="Email Address"
           className="p-2 my-2 w-full bg-gray-400 rounded-xs"
         />
         <input
+          ref={password}
           type="password"
           placeholder="Password"
           className="p-2 my-2 w-full bg-gray-400 rounded-xs"
         />
-        <button className="p-4 my-4 w-full bg-red-700 rounded-xs">
-          Sign In
+        {errorMessage && (
+          <h3 className="text-red-500 font-bold">{errorMessage}</h3>
+        )}
+        <button
+          className="p-4 my-4 w-full bg-red-700 rounded-xs"
+          onClick={handleButtonClick}
+        >
+          {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
         <p className="text-gray-500">
           {isSignInForm ? "New to Netflix? " : "Already registered? "}

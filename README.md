@@ -2,9 +2,15 @@
 
 - Create react-app using vite
 - Configure TailwindCSS
+- Routing of App
 - Header
 - Login Form
 - Sign up Form
+- Form validation
+- useRef Hook
+- Firebase set up
+- Deploying our app to production
+- Create sign up user account
 
 # Features
 
