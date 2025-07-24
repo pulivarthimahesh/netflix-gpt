@@ -33,7 +33,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          // console.log(user);
           updateProfile(user, {
             displayName: displayName.current.value,
             photoURL: IMAGE_AVATAR,

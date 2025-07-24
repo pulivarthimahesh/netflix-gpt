@@ -12,7 +12,6 @@ const useNowPlayingMovies = () => {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.results);
         dispatch(addNowPlayingMovies(res.results));
       })
       .catch((err) => console.error(err));
