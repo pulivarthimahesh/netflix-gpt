@@ -13,3 +13,18 @@ export const API_OPTIONS = {
   },
 };
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
+
+export const lang = {
+  en: {
+    search: "Search",
+    searchPlaceholder: "What would you like to search today?",
+  },
+  hindi: {
+    search: "खोज",
+    searchPlaceholder: "आज आप क्या खोजना चाहेंगे?",
+  },
+  spanish: {
+    search: "buscar",
+    searchPlaceholder: "¿Qué te gustaría buscar hoy?",
+  },
+};

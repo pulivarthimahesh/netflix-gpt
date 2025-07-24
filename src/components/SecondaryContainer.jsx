@@ -4,7 +4,6 @@ import MoviesList from "./MoviesList";
 
 const SecondaryContainer = () => {
   const movies = useSelector((store) => store.movieReducer?.nowPlayingMovies);
-  console.log(movies);
   return (
     <div className="bg-black px-4">
       <div className="relative -mt-50 z-20">
