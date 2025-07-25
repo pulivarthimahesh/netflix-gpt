@@ -8,9 +8,13 @@ const MoviesList = ({ movies, title }) => {
       <h1 className="text-white mb-2">{title}</h1>
       <div className="flex overflow-x-scroll">
         <div className="flex">
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} poster_path={movie.poster_path} />
-          ))}
+          {movies.length > 0 ? (
+            movies.map((movie) => (
+              <MovieCard key={movie.id} poster_path={movie.poster_path} />
+            ))
+          ) : (
+            <h1 className="text-white">No Movies found!!!</h1>
+          )}
         </div>
       </div>
     </div>

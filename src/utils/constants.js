@@ -10,6 +10,7 @@ export const API_OPTIONS = {
     accept: "application/json",
     Authorization:
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YzEwNGQ1ZWNmOGVlNDdiODAwMDRjNzM3OTA1ZDI0ZSIsIm5iZiI6MTc1MzI0ODY5OS41MDMsInN1YiI6IjY4ODA3M2JiZGFhODY5ZWQ2NTE2YWVkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.24KW7JwNIjOZnDkfOGuNCwjkCGiLVfOvVFbLFpjjiYo",
+    // + import.meta.env.REACT_APP_TMDB_KEY,
   },
 };
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
@@ -17,14 +18,22 @@ export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
 export const lang = {
   en: {
     search: "Search",
-    searchPlaceholder: "What would you like to search today?",
+    // searchPlaceholder: "What would you like to search today?",
+    searchPlaceholder:
+      "Enter comma seperated movies like Jaat, Dangal, Bahubali, Animal, Pushpa",
   },
   hindi: {
     search: "खोज",
-    searchPlaceholder: "आज आप क्या खोजना चाहेंगे?",
+    // searchPlaceholder: "आज आप क्या खोजना चाहेंगे?",
+    searchPlaceholder:
+      "जाट, दंगल, बाहुबली, एनिमल, पुष्पा जैसी अल्पविराम से अलग की गई फिल्में दर्ज करें",
   },
   spanish: {
     search: "buscar",
-    searchPlaceholder: "¿Qué te gustaría buscar hoy?",
+    // searchPlaceholder: "¿Qué te gustaría buscar hoy?",
+    searchPlaceholder:
+      "Ingrese películas separadas por comas como Jaat, Dangal, Bahubali, Animal, Pushpa",
   },
 };
+
+export const OPENAI_API_KEY = import.meta.env.REACT_APP_OPENAI_API_KEY;

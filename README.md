@@ -30,6 +30,20 @@
 - Embeded the Youtube video and make it autoplay and mute
 - Tailwind classes to make Main container look awesome
 - Build Secondary component
+- Build Movie List
+- Build Movie Card
+- TMDB Image CDN URL
+- Made the Browse page amazing with Tailwind CSS
+- GPT Search Container
+- Multi-language feature in out App
+- Get Open AI API key
+- Get search API call
+- Fetched getMovieSuggestions from TMDB
+- Created gptSlice added data
+- Resued MovieList component to make movie suggestion container
+- Memoziation
+- Added .env file
+- Added .env to gitignore
 
 # Features
 
